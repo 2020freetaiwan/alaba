@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿拉八娛樂城</title>
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <style>
+        /* 全局重置樣式 */
+        * {
+            border: 0;
+            box-sizing: border-box;
+            font-weight: normal;
+            margin: 0;
+            padding: 0;
+            outline: 0;
+            text-decoration: none;
+            text-rendering: optimizeLegibility;
+            list-style: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        html, body {
+            min-height: 100%;
+            font-family: Verdana, Raleway, HelveticaNeue, "Source Sans Pro", Helvetica, Arial, "PingFangTC", "Yu Gothic", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        button {
+            background-color: rgba(0, 0, 0, 0);
+            color: inherit;
+            cursor: pointer;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            transition: background-color 5000s ease-in-out 0s;
+            box-shadow: 0 0 0px 1000px #fff inset;
+            -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+        }
+
+        input[type=date]::-webkit-inner-spin-button,
+        input[type=date]::-webkit-calendar-picker-indicator {
+            -webkit-appearance: none;
+            display: none;
+        }
+
+        h1, h2, h3, h4, h5, p {
+            font-weight: normal;
+        }
+
+        img {
+            pointer-events: none;
+        }
+
+        a {
+            cursor: pointer;
+        }
+
+        /* 整體頁面樣式 */
+        body {
+            background: #ffd9d9;
+        }
+
+        /* 移動端樣式 */
+        .mobile-wrapper {
+            width: 100%;
+        }
+        
+        .mobile-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            background-color: #f9d3d3;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+        }
+        
+        .mobile-logo {
+            height: 40px;
+        }
+        
+        .login-register-btn {
+            background: linear-gradient(90deg, #e1a1a1, #c77171);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-menu-button {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-button span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #c66c5e;
+            border-radius: 3px;
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 60px);
+            background-color: rgba(255, 255, 255, 0.95);
+            z-index: 9;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .mobile-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            color: #606870;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .mobile-nav-item img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .mobile-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .mobile-login, .mobile-register {
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            text-align: center;
+            flex: 1;
+            margin: 0 5px;
+        }
+        
+        .mobile-login {
+            background-color: #f8f8f8;
+            border: 1px solid #c66c5e;
+            color: #c66c5e;
+        }
+        
+        .mobile-register {
+            background: linear-gradient(90deg, #ef9486, #c66c5e);
+            color: white;
+        }
+        
+        .mobile-carousel {
+            margin-top: 70px;
+            width: 90%;
+            margin: 70px auto 0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .mobile-carousel-slider {
+            position: relative;
+            left: -100%;
+            display: flex;
+            height: 100%;
+            flex-shrink: 0;
+            transition: all .5s;
+        }
+        
+        .mobile-carousel-img {
+            flex-basis: 100%;
+            width: 100%;
+            flex-shrink: 0;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        
+        .mobile-carousel-img > img {
+            width: 100%;
+            display: block;
+        }
+        
+        .mobile-carousel-previous,
+        .mobile-carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+        
+        .mobile-carousel-previous {
+            left: 10px;
+        }
+        
+        .mobile-carousel-next {
+            right: 10px;
+        }
+        
+        .mobile-carousel-progress {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            z-index: 2;
+        }
+        
+        .mobile-carousel-progress > span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 0 5px;
+        }
+        
+        .mobile-carousel-progress > span.active {
+            background-color: #fff;
+        }
+        
+        .mobile-announcement {
+            margin: 15px 10px;
+            padding: 10px;
+            background-color: rgba(231, 154, 134, 0.1);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .mobile-announcement img {
+            width: 20px;
+            margin-right: 10px;
+        }
+        
+        .mobile-banner {
+            margin: 15px 10px;
+        }
+        
+        .mobile-banner img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        .mobile-game-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 0 10px;
+            margin: 20px 0;
+        }
+        
+        .mobile-game-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .mobile-game-item img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+        }
+        
+        .mobile-game-item span {
+            font-size: 12px;
+            color: #606870;
+        }
+        
+        .mobile-ranking {
+            margin: 0 10px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .mobile-ranking-title {
+            font-size: 18px;
+            color: #606870;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .mobile-ranking-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .mobile-ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .mobile-rank-number {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+            color: #606870;
+        }
+        
+        .mobile-rank-number.top3 {
+            background-color: #c66c5e;
+            color: white;
+        }
+        
+        .mobile-rank-info {
+            flex: 1;
+        }
+        
+        .mobile-rank-name {
+            font-size: 14px;
+            color: #606870;
+        }
+        
+        .mobile-rank-amount {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .mobile-rank-vip {
+            width: 20px;
+            margin-left: 5px;
+        }
+        
+        .mobile-footer {
+            background-color: #FCFDFD;
+            padding: 20px 10px;
+            text-align: center;
+        }
+        
+        .mobile-footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .mobile-footer-link {
+            color: #c66c5e;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-right: 1px solid #c66c5e;
+        }
+        
+        .mobile-footer-link:last-child {
+            border-right: none;
+        }
+        
+        .mobile-footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .mobile-footer-social img {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .mobile-footer-copyright {
+            font-size: 12px;
+            color: #c66c5e;
+        }
+        
+        .mobile-fixed-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #f0f0f0;
+            z-index: 9;
+        }
+        
+        .mobile-bottom-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 12px;
+            color: #606870;
+        }
+        
+        .mobile-bottom-item img {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 3px;
+        }
+        
+        /* 左側導航條樣式 */
+        .side-nav {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 0 10px 10px 0;
+            overflow: hidden;
+            z-index: 8;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .side-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+            color: #606870;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .side-nav-item img {
+            width: 30px;
+            height: 30px;
+            margin-bottom: 5px;
+        }
+        
+        .side-nav-item.active {
+            color: #c66c5e;
+            background-color: rgba(198, 108, 94, 0.1);
+        }
+
+        .fix {
+            display: flex;
+            align-items: flex-start;
+            width: 90%;
+            margin: 0 auto;
+        }
+        
+        /* 左側側邊欄 */
+        .side-category {
+            width: 80px;
+            background-color: #fff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+            border-radius: 0 10px 10px 0;
+            z-index: 8;
+        }
+        
+        .side-category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 5px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .side-category-item.active {
+            background-color: rgba(198, 108, 94, 0.1);
+        }
+        
+        .side-category-item img {
+            width: 30px;
+            height: 30px;
+            margin-bottom: 5px;
+        }
+        
+        .side-category-item span {
+            font-size: 12px;
+            color: #606870;
+        }
+        
+        .side-category-item.active span {
+            color: #c66c5e;
+        }
+    </style>
+</head>
+<body>
+    <h1 hidden>阿拉八娛樂城-現金版娛樂城-首存優惠滿1000送1000</h1>
+    
+    <!-- Mobile 組件 -->
+    <div class="mobile-wrapper">
+        <header class="mobile-header">
+            <img src="img/logo.png" alt="阿拉八娛樂城" class="mobile-logo">
+            <a href="https://ala8.net/login" class="login-register-btn">
+                登入 / 註冊
+            </a>
+            <button type="button" class="mobile-menu-button" id="mobileMenuButton">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+        
+        <nav class="mobile-nav" id="mobileNav">
+            <div class="mobile-controls">
+                <a href="https://ala8.net/login" class="mobile-login">登入</a>
+                <a href="https://ala8.net/register" class="mobile-register">註冊</a>
+            </div>
+            
+            <div class="mobile-nav-list">
+                <a href="https://ala8.net/" class="mobile-nav-item">
+                    <img src="img/Bar/home.png" alt="首頁">
+                    <span>首頁</span>
+                </a>
+                <a href="https://ala8.net/casino" class="mobile-nav-item">
+                    <img src="img/Bar/baccarat.png" alt="真人娛樂">
+                    <span>真人娛樂</span>
+                </a>
+                <a href="https://ala8.net/slot" class="mobile-nav-item">
+                    <img src="img/Bar/slot.png" alt="電子遊藝">
+                    <span>電子遊藝</span>
+                </a>
+                <a href="https://ala8.net/chess" class="mobile-nav-item">
+                    <img src="img/Bar/chess.png" alt="棋牌遊戲">
+                    <span>棋牌遊戲</span>
+                </a>
+                <a href="https://ala8.net/sports" class="mobile-nav-item">
+                    <img src="img/Bar/sports.png" alt="體育賽事">
+                    <span>體育賽事</span>
+                </a>
+                <a href="https://ala8.net/fishing" class="mobile-nav-item">
+                    <img src="img/Bar/fish.png" alt="捕魚街機">
+                    <span>捕魚街機</span>
+                </a>
+                <a href="https://ala8.net/lottery" class="mobile-nav-item">
+                    <img src="img/Bar/lottery.png" alt="彩票遊戲">
+                    <span>彩票遊戲</span>
+                </a>
+                <a href="https://ala8.net/ranking" class="mobile-nav-item">
+                    <img src="img/Bar/ranking.png" alt="排行榜">
+                    <span>排行榜</span>
+                </a>
+                <a href="https://ala8.net/cs" class="mobile-nav-item">
+                    <img src="img/Bar/service.png" alt="聯繫客服">
+                    <span>聯繫客服</span>
+                </a>
+                <a href="https://ala8.net/promo" class="mobile-nav-item">
+                    <img src="img/Bar/promotion.png" alt="優惠活動">
+                    <span>優惠活動</span>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="mobile-carousel">
+            <a href="https://ala8.net/deposit">
+                <img src="img/Promotion/deposit.png" alt="存款優惠" style="width: 100%;">
+            </a>
+        </div>
+        
+        <div class="mobile-announcement">
+            <img src="img/Icons/bell.png" alt="公告">
+            <marquee scrollamount="3">
+                🔔阿拉八娛樂城即日起儲值直升★VIP★，業界最高返水等
+            </marquee>
+        </div>
+        <div class="fix" >
+            <div class="side-category">
+                <a href="https://ala8.net/ranking" class="side-category-item active">
+                    <img src="img/Bar/ranking.png" alt="排行">
+                    <span>排行</span>
+                </a>
+                <a href="https://ala8.net/casino" class="side-category-item">
+                    <img src="img/Bar/baccarat.png" alt="真人">
+                    <span>真人</span>
+                </a>
+                <a href="https://ala8.net/slot" class="side-category-item">
+                    <img src="img/Bar/slot.png" alt="電子">
+                    <span>電子</span>
+                </a>
+                <a href="https://ala8.net/chess" class="side-category-item">
+                    <img src="img/Bar/chess.png" alt="棋牌">
+                    <span>棋牌</span>
+                </a>
+            </div>
+            
+            <div class="mobile-ranking">
+                <div class="mobile-ranking-title">阿拉八排行榜</div>
+                <div class="mobile-ranking-list">
+                    <div class="mobile-ranking-item">
+                        <div class="mobile-rank-number top3">
+                            <img src="img/Rank/rank1.png" alt="第一名" style="width: 25px; height: 25px;">
+                        </div>
+                        <div class="mobile-rank-info">
+                            <span class="mobile-rank-name">88888888 <img src="img/VIP/vip5.png" alt="VIP5" class="mobile-rank-vip"></span>
+                            <span class="mobile-rank-amount">25039868</span>
+                        </div>
+                    </div>
+                    <div class="mobile-ranking-item">
+                        <div class="mobile-rank-number top3">
+                            <img src="img/Rank/rank2.png" alt="第二名" style="width: 25px; height: 25px;">
+                        </div>
+                        <div class="mobile-rank-info">
+                            <span class="mobile-rank-name">文啊 <img src="img/VIP/vip4.png" alt="VIP4" class="mobile-rank-vip"></span>
+                            <span class="mobile-rank-amount">7724884</span>
+                        </div>
+                    </div>
+                    <div class="mobile-ranking-item">
+                        <div class="mobile-rank-number top3">
+                            <img src="img/Rank/rank3.png" alt="第三名" style="width: 25px; height: 25px;">
+                        </div>
+                        <div class="mobile-rank-info">
+                            <span class="mobile-rank-name">JJJJ王 <img src="img/VIP/vip3.png" alt="VIP3" class="mobile-rank-vip"></span>
+                            <span class="mobile-rank-amount">2846142</span>
+                        </div>
+                    </div>
+                    <div class="mobile-ranking-item">
+                        <div class="mobile-rank-number">4</div>
+                        <div class="mobile-rank-info">
+                            <span class="mobile-rank-name">Thomas <img src="img/VIP/vip2.png" alt="VIP2" class="mobile-rank-vip"></span>
+                            <span class="mobile-rank-amount">2747452</span>
+                        </div>
+                    </div>
+                    <div class="mobile-ranking-item">
+                        <div class="mobile-rank-number">5</div>
+                        <div class="mobile-rank-info">
+                            <span class="mobile-rank-name">王百兔 <img src="img/VIP/vip2.png" alt="VIP2" class="mobile-rank-vip"></span>
+                            <span class="mobile-rank-amount">2663985</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mobile-fixed-bottom">
+            <a href="https://ala8.net/" class="mobile-bottom-item">
+                <img src="img/MobileFooter/deposit.png" alt="首頁">
+                <span>首頁</span>
+            </a>
+            <a href="https://ala8.net/promo" class="mobile-bottom-item">
+                <img src="img/MobileFooter/promotion.png" alt="優惠">
+                <span>優惠</span>
+            </a>
+            <a href="https://ala8.net/deposit" class="mobile-bottom-item">
+                <img src="img/MobileFooter/deposit.png" alt="存款">
+                <span>存款</span>
+            </a>
+            <a href="https://ala8.net/cs" class="mobile-bottom-item">
+                <img src="img/MobileFooter/customService.png" alt="客服">
+                <span>客服</span>
+            </a>
+            <a href="https://ala8.net/account" class="mobile-bottom-item">
+                <img src="img/MobileFooter/promotion.png" alt="我的">
+                <span>我的</span>
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // 側邊選單切換
+        const menuBtn = document.getElementById('mobileMenuButton');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        menuBtn.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+        });
+        
+        // 點擊側邊導航項目高亮
+        const sideItems = document.querySelectorAll('.side-category-item');
+        
+        sideItems.forEach(item => {
+            item.addEventListener('click', function() {
+                sideItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // 輪播圖功能
+        const slider = document.getElementById('mobileCarouselSlider');
+        const prevBtn = document.getElementById('mobileCarouselPrevious');
+        const nextBtn = document.getElementById('mobileCarouselNext');
+        const progressDots = document.querySelectorAll('.mobile-carousel-progress span');
+        let currentIndex = 0;
+        let autoSlideInterval;
+        
+        function updateSlide(index) {
+            if (index < 0) index = 2;
+            if (index > 2) index = 0;
+            
+            currentIndex = index;
+            slider.style.transform = `translateX(-${100 * (currentIndex + 1)}%)`;
+            
+            // 更新指示器
+            progressDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+        }
+        
+        function resetSlider() {
+            slider.style.transition = 'none';
+            slider.style.transform = 'translateX(-100%)';
+            setTimeout(() => {
+                slider.style.transition = 'all .5s';
+            }, 50);
+        }
+        
+        // 初始化輪播
+        resetSlider();
+        
+        // 自動輪播
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                slider.style.transform = `translateX(-${100 * (currentIndex + 2)}%)`;
+                setTimeout(() => {
+                    slider.style.transition = 'none';
+                    slider.style.transform = `translateX(-${100 * (currentIndex + 1)}%)`;
+                    setTimeout(() => {
+                        slider.style.transition = 'all .5s';
+                        updateSlide((currentIndex + 1) % 3);
+                    }, 50);
+                }, 500);
+            }, 5000);
+        }
+        
+        startAutoSlide();
+        
+        // 按鈕控制
+        prevBtn.addEventListener('click', () => {
+            clearInterval(autoSlideInterval);
+            updateSlide((currentIndex - 1 + 3) % 3);
+            startAutoSlide();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            clearInterval(autoSlideInterval);
+            updateSlide((currentIndex + 1) % 3);
+            startAutoSlide();
+        });
+    </script>
+</body>
+</html> 
